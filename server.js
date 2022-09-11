@@ -9,7 +9,7 @@
 
     const Database = require('./lib/database');
 
-    const port = process.env.PORT || 443;
+    const port = process.env.PORT || 80;
     const app = Express();
 
     app.set('view engine','ejs');
