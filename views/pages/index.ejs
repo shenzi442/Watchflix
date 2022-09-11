@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title><%= title %></title>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="main-content container">
+        <h1 class="text-center">Movies and Animes</h1>
+        <h3>Animes:</h3>
+            <div class="card-group">
+                <% for (let animes_index = 0; animes_index < animes_list.length; animes_index++) { %>
+                        <div class="card" style="max-width: 280px;">
+                            <img src="<%= animes_list[animes_index].poster %>" class="card-img-top .img-fluid" style="max-width: 280px;max-height: 320px;" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= animes_list[animes_index].title %></h5>
+                                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                                <a href="/anime/<%= animes_list[animes_index].slug %>" class="btn btn-primary">Regarder maintenant</a>
+                            </div>
+                        </div> 
+                <% } %>
+            </div>
+        <h3>Movies:</h3>
+            <div class="card-group">
+                <% for (let movies_index = 0; movies_index < movies_list.length; movies_index++) { %>
+                        <div class="card" style="max-width: 280px;">
+                            <img src="<%= movies_list[movies_index].poster %>" class="card-img-top" style="max-width: 280px;max-height: 320px;" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= movies_list[movies_index].title %></h5>
+                                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                                <a href="/movie/<%= movies_list[movies_index].slug %>" class="btn btn-primary">Regarder maintenant</a>
+                            </div>
+                        </div>
+                <% } %>
+            </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+</html>

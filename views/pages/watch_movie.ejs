@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title><%= title %></title>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="main-content container">
+        <h1 class="text-center"><%= Movie.title %> (<%= Movie.release_date %>)</h1>
+
+        <br>
+
+        
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <% for (let index = 0; index < sources.length; index++) { %>
+                        <% if (index == 0) { %>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="source-tab-<%= index %>" data-bs-toggle="tab" data-bs-target="#tab-pane-<%= index %>" type="button" role="tab" aria-controls="tab-pane-<%= index %>" aria-selected="true">Source n°<%= index + 1 %> <%= sources[index].display_type %></button>
+                            </li>
+                        <% } else { %> 
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="source-tab-<%= index %>" data-bs-toggle="tab" data-bs-target="#tab-pane-<%= index %>" type="button" role="tab" aria-controls="tab-pane-<%= index %>" aria-selected="false">Source n°<%= index + 1 %> <%= sources[index].display_type %></button>
+                            </li>
+                        <% } %>
+                    <% } %> 
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <% for (let index = 0; index < sources.length; index++) { %> 
+                    <% if (index == 0) { %>
+                        <div class="tab-pane fade show active" id="tab-pane-<%= index %>" role="tabpanel" aria-labelledby="vostfr-tab-<%= index %>" tabindex="0">
+                            <h4>Source n°<%= index + 1 %></h4> 
+                            <iframe src="<%= sources[index].source %>" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" class="lecteur" frameborder="0"></iframe>   
+                        </div>
+                    <% } else { %> 
+                        <div class="tab-pane fade" id="tab-pane-<%= index %>" role="tabpanel" aria-labelledby="vostfr-tab-<%= index %>" tabindex="0">
+                            <h4>Source n°<%= index + 1 %></h4> 
+                            <iframe src="<%= sources[index].source %>" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" class="lecteur" frameborder="0"></iframe>   
+                        </div>
+                    <% } %> 
+                <% } %> 
+            </div>
+
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+</html>

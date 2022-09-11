@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+@font-face {
+    font-family: "GodOfWar";
+    src: url("/css/fonts/GodOfWar.TTF");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
+
+.summary {
+    margin-right: 1px;
+}
+
+.lecteur {
+    width: 1000px;
+    height: 600px;
+}

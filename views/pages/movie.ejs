@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title><%= title %></title>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    
+    <main class="main-content container">
+        <h1 class="text-center"><a href="/watch/<%= Movie.slug %>">Watch <%= Movie.title %></a></h1>
+        <div class="information">
+            <img src="<%= Movie.poster %>" alt="Poster <%= Movie.title %>" style="width: 25%;">
+            <div>
+                <p class="summary"><%- Movie.summary %></p>
+            </div>
+        </div>
+
+        <div>
+            <a href="/watch/<%= Movie.slug %>"><button class="btn btn-warning" type="button">Regarder <%= Movie.title %> HD en streaming gratuit</button></a>
+        </div>
+
+        <% if (Movie.trailers && Movie.trailers != null && Movie.trailers != "") { %>
+            <br>
+        <br>
+            <div class="trailers_section">
+                <h2>Trailers</h2>
+                <% for (let index_trailer = 0; index_trailer < Movie.trailers.length; index_trailer++) { %>
+                    <iframe class="youtube-player" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="<%= Movie.title %> - Trailer <% index_trailer %> " src="<%= Movie.trailers[index_trailer] %>" width="100%" height="800px" frameborder="0"></iframe>
+                <% } %> 
+            </div>
+        <% } %> 
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+</html>

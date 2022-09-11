@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title><%= title %></title>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="main-content container">
+        <h1 class="text-center"><%= Anime.title %></h1>
+        <br>
+        
+        <div class="information">
+            <img src="<%= Anime.poster %>" class="rounded float-start" alt="Poster <%= Anime.title %>" style="width: 25%;" />
+            <div class="d-flex flex-row-reverse">
+                <p class="summary"><%- Anime.summary %></p>
+                <% if (Anime.html_addons && Anime.html_addons != "" && Anime.html_addons != null) { // Html additions (image, info, ...) %>
+                    <!-- <p><%- Anime.html_addons %></p> -->
+                <% } %>
+            </div>
+        </div>
+
+        <div class="accordion accordion-flush" id="accordionFlush">
+            <% for (let index_season = 0; index_season < Seasons.length; index_season++) { // Seasons for %>
+                <% if (index_season === 0) { %>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-heading<%= index_season %>">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index_season %>" aria-expanded="false" aria-controls="flush-collapse<%= index_season %>">
+                            <%= Seasons[index_season].season_name %>
+                          </button>
+                        </h2>
+    
+                    
+                        <div id="flush-collapse<%= index_season %>" class="accordion-collapse collapse show" aria-labelledby="flush-heading<%= index_season %>" data-bs-parent="#accordionFlush">
+                            <div class="accordion-body">
+                                <ul>
+                                    <% 
+                                    for (let index_ep = 0; index_ep < episodes_list.length; index_ep++) { // Episodes for 
+                                        if (episodes_list[index_ep].season_number == Seasons[index_season].season_number) { // Check if episode is in the season
+                                    %>
+    
+                                        <li><%= episodes_list[index_ep].episode_number %>: <a href="/watch/<%= episodes_list[index_ep].episode_slug %>"><%= episodes_list[index_ep].episode_name %></a></li>
+                                        
+                                    <% } //if %>
+                                    <% } // for episode %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <% } else { %>     
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-heading<%= index_season %>">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index_season %>" aria-expanded="false" aria-controls="flush-collapse<%= index_season %>">
+                            <%= Seasons[index_season].season_name %>
+                        </button>
+                        </h2>
+
+                    
+                        <div id="flush-collapse<%= index_season %>" class="accordion-collapse collapse" aria-labelledby="flush-heading<%= index_season %>" data-bs-parent="#accordionFlush">
+                            <div class="accordion-body">
+                                <ul>
+                                    <% 
+                                    for (let index_ep = 0; index_ep < episodes_list.length; index_ep++) { // Episodes for 
+                                        if (episodes_list[index_ep].season_number == Seasons[index_season].season_number) { // Check if episode is in the season
+                                    %>
+
+                                        <li><%= episodes_list[index_ep].episode_number %>: <a href="/watch/<%= episodes_list[index_ep].episode_slug %>"><%= episodes_list[index_ep].episode_name %></a></li>
+                                        
+                                    <% } //if %>
+                                    <% } // for episode %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>   
+                <% } %> 
+            <% } %>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+</html>
